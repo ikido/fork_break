@@ -8,9 +8,9 @@ module ForkBreak
 
     @breakpoint_setter = NullBreakpointSetter.new
 
-    def initialize(debug = false, return = true)
+    def initialize(debug = false, return_value = true)
       @debug = debug
-      flags = return ? [:return, :to_fork, :from_fork] : [:to_fork, :from_fork]
+      flags = return_value ? [:return, :to_fork, :from_fork] : [:to_fork, :from_fork]
       @fork = Fork.new(*flags) do |child_fork|
         self.class.breakpoint_setter = breakpoints = BreakpointSetter.new(child_fork, debug)
 
