@@ -38,7 +38,7 @@ module ForkBreak
           brk = @fork.receive_object
           puts "Parent is receiving object #{brk} from #{@fork.pid}" if @debug
 
-          @return_value = @fork.return_value if brk == :forkbreak_end
+          @return_value = @fork.return_value if brk == :forkbreak_end && return_value
 
           return self if brk == @next_breakpoint
           if brk == :forkbreak_end
